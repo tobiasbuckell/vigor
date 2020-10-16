@@ -1,16 +1,29 @@
 -- http://www.tobiasbuckell.com
--- VIGOR: one fiction writer's variation on Vim style modal bindings
+-- VIGOR: one fiction writer's variation on Vim/eMacs style modal bindings
+
 -- Project to do list:
--- I need persistent banner alert in upper or lower part of screen saying you're in editing mode, the different color isn't enough, I keep forgetting I'm in the mode. 
--- Delete by line would really be more useful if it was by sentence 
--- How do I turn off trackpad. Right now, I can do it by hitting option five times in a row manually, but I can't quite get that working in Lua as an automatic triggered code when I go into editing mode. 
--- hitting j and k at the same time to engage the editing mode, I cannot seem to figure this out. It would be great. And hitting j and k together again to come out of it would be better, as those are my strongest fingers.
--- hitting caps lock again to turn off the mode would be dope, my fingers keep trying to do that, so maybe I shouldn't fight it.
+-- * I need persistent banner alert in upper or lower part of screen saying 
+-- you're in editing mode, the different color isn't enough, I keep 
+-- forgetting I'm in the mode. 
+-- * Delete by line would really be more useful if it was by sentence 
+-- * How do I turn off trackpad. Right now, I can do it by hitting option 
+-- five times in a row manually, but I can't quite get that working in Lua 
+-- as an automatic triggered code when I go into editing mode. 
+-- * hitting j and k at the same time to engage the editing mode, I cannot seem
+-- to figure this out. It would be great. And hitting j and k together again to
+-- come out of it would be better, as those are my strongest fingers.
+-- * hitting caps lock again to turn off the mode would be dope, my fingers 
+-- keep trying to do that, so maybe I shouldn't fight it.
+-- *it would be really nice to tap shift or double tap it and then not have to
+-- hold it down while selecting with right hand keys.
 
 --------------------------------------------------------------------------------
 -- SPEED UP KEYSTRIKES
 --------------------------------------------------------------------------------
--- I noticed that my preferred rapid repeating keys and fast keystrokes were gone when I installed these keybindings on hammerspoon. This code came from https://stackoverflow.com/questions/40986242/key-repeats-are-delayed-in-my-hammerspoon-script to put the speed back in the letters popping up and I think it made a difference:
+-- I noticed that my preferred rapid repeating keys and fast keystrokes were 
+-- gone when I installed these keybindings on hammerspoon. This code came from 
+-- https://stackoverflow.com/questions/40986242/key-repeats-are-delayed-in-my-hammerspoon-script 
+-- to put speed back in the letters popping up, I think it made a difference:
 
 local fastKeyStroke = function(modifiers, character)
   local event = require("hs.eventtap").event
@@ -21,12 +34,14 @@ end
 --------------------------------------------------------------------------------
 -- DIM SCREEN WHEN EDITING MODE INVOKED
 --------------------------------------------------------------------------------
--- This loads a function to let us dim the screen to indicate we've shifted modes
+-- Loads a function to let us dim the screen to indicate we've shifted modes
 
 local ScreenDimmer = {}
 
 function ScreenDimmer.dimScreen()
--- I snagged this code from (https://github.com/dbalatero/VimMode.spoon) these shifts from flux-like plugin at https://github.com/calvinwyoung/.dotfiles/blob/master/darwin/hammerspoon/flux.lua
+-- I snagged this code from (https://github.com/dbalatero/VimMode.spoon) 
+-- these shifts from flux-like plugin at https://github.com/calvinwyoung/.dotfiles/blob/master/darwin/hammerspoon/flux.lua
+
   local whiteShift = {
     alpha = 1.0,
     red = 1.0,
@@ -48,17 +63,24 @@ function ScreenDimmer.restoreScreen()
   hs.screen.restoreGamma()
 end
 
--- return ScreenDimmer --the original code that I snagged from Vimmode (https://github.com/dbalatero/VimMode.spoon) has this, but my Hammerspoon init load configuration complained.
+-- return ScreenDimmer --the original code that I snagged from Vimmode 
+-- (https://github.com/dbalatero/VimMode.spoon) has this, but my Hammerspoon 
+-- init load configuration complained.
 
 --------------------------------------------------------------------------------
 -- CODE TO INVOKE EDITING MODE
 --------------------------------------------------------------------------------
 
--- this is a 'mode' or 'layer' for keybindings that allow us to do things other than type with the keyboard. Keybindings are also known as 'shortcuts' like "CONTROL + C" to copy text that's highlighted.
+-- this is a 'mode' or 'layer' for keybindings that allow us to do things other
+-- than type with the keyboard. Keybindings are also known as 'shortcuts' like
+-- "CONTROL + C" to copy text that's highlighted.
 
 local normal = hs.hotkey.modal.new()
 
--- f18 - here we use the key f18 to enter Normal mode. 'Normal mode' is what VIM, a unix text editor, calls the new keyboard shortcuts for a certain collection of actions. The f18 key is triggered by capslock through downloading Karabiner Elements and using it to map capslock to f18.
+-- f18 - here we use the key f18 to enter Normal mode. 'Normal mode' is what 
+-- VIM, a unix text editor, calls the new keyboard shortcuts for a certain 
+-- collection of actions. The f18 key is triggered by capslock through 
+-- downloading Karabiner Elements and using it to map capslock to f18.
 
 enterNormal = hs.hotkey.bind({""}, "f18", function()
     normal:enter()
@@ -69,10 +91,18 @@ end)
 --------------------------------------------------------------------------------
 -- CHARACTER, WORD, and LINE MOVEMENTS
 --------------------------------------------------------------------------------
+-- note: these keybindings are all for a COLEMAK-DH layout keyboard, not a
+-- QWERTY layout.
+
 
 -- k  - move left a character
 function left() hs.eventtap.keyStroke({alt}, "Left") end
-normal:bind({}, 'k', left, nil, left) --this "left, nil, left" got in there from previous code and it works with it in there but I'm not sure what it is, maybe a better programmer than I could map all this out, I'm not a programmer, just someone who wanted to see this happen.
+normal:bind({}, 'k', left, nil, left) 
+
+-- this "left, nil, left" got in there from previous code and it works with it 
+-- in there but I'm not sure what it is, maybe a better programmer than I could
+-- map all this out, I'm not a programmer, just someone who wanted to see 
+-- this happen.
 
 -- o - move right a character
 function right() hs.eventtap.keyStroke({alt}, "Right") end
@@ -196,7 +226,8 @@ end)
 --------------------------------------------------------------------------------
 -- TURN OFF ACCIDENTAL KEYSTRIKES
 --------------------------------------------------------------------------------
--- I would like to add in a way for keys that aren't bound to my custom combos here to be ignored, haven't figured out how to do that yet.
+-- I would like to add in a way for keys that aren't bound to my custom combos 
+-- here to be ignored, haven't figured out how to do that yet.
 
 
 --------------------------------------------------------------------------------
@@ -309,7 +340,10 @@ normal:bind({}, 'p', function()
     hs.eventtap.keyStroke({"cmd"}, "v")
 end)
 
--- I have some variations to the pasting because I use CopyClip 2 for a pasteboard. Cmd shift V is usually what we use for a clipboard history app, so I'm keeping that.
+-- I have some variations to the pasting because I use CopyClip 2 for a 
+-- pasteboard. Cmd shift V is usually what we use for a clipboard history app, 
+-- so I'm keeping that.
+
 -- p - paste 
 normal:bind({}, 'p', function()
     hs.eventtap.keyStroke({"cmd" , "shift"}, "v")
@@ -352,3 +386,4 @@ hs.window.filter.new('Terminal')--
 --------------------------------------------------------------------------------
 
 -- Window Management
+-- (to come)
