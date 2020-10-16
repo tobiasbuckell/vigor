@@ -15,7 +15,7 @@
 -- * hitting caps lock again to turn off the mode would be dope, my fingers 
 -- keep trying to do that, so maybe I shouldn't fight it.
 -- *it would be really nice to tap shift or double tap it and then not have to
--- hold it down while selecting with right hand keys.
+-- hold it down while selecting with the right hand keys.
 
 --------------------------------------------------------------------------------
 -- SPEED UP KEYSTRIKES
