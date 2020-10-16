@@ -32,3 +32,9 @@ files will appear. Look for ./hammerspoon and find the init.lua file to open
 in a text editor of your choice.
 
 Enjoy!
+
+Remember, this is a COLEMAK-DH mod right now until further development to either
+add an easy switch to QWERTY or the project gets forked. For now, you would need
+to remap your own keys from these keys:
+
+![COLEMAK-DH](https://github.com/tobiasbuckell/vigor/blob/main/colemak%20cheatsheet.png)
