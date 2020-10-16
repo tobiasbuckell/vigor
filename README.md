@@ -33,7 +33,8 @@ in a text editor of your choice.
 
 Enjoy!
 
-Remember, this is a COLEMAK-DH mod right now until further development to either
+Please remember, this uses a custom keyboard layout that isn't QWERTY, it uses
+a COLEMAK-DH mod layout right now until further development to either
 add an easy switch to QWERTY or the project gets forked. For now, you would need
 to remap your own keys from these keys:
 
