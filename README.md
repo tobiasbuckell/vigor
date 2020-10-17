@@ -1,3 +1,7 @@
+!!!IMPORTANT: If you use a QWERTY layout, go to 
+https://github.com/tobiasbuckell/vigor/tree/vigor-qwerty to download as the main
+version of this uses a custom key layout for typing called Colemak!!!
+
 # VIGOR (COLEMAK-DH VARIANT)
 *a VIM-like keybinding system in Lua code for Hammerspoon with Colemak-DH keyboard layout*
 
