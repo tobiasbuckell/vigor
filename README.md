@@ -1,4 +1,4 @@
-# VIGOR (COLEMAK-DH VARIANT) - TESTING
+# VIGOR (QWERTY VARIANT)
 *a VIM-like keybinding system in Lua code for Hammerspoon with Colemak-DH keyboard layout*
 
 ## How to use:
@@ -33,9 +33,3 @@ in a text editor of your choice.
 
 Enjoy!
 
-Please remember, this uses a custom keyboard layout that isn't QWERTY, it uses
-a COLEMAK-DH mod layout right now until further development to either
-add an easy switch to QWERTY or the project gets forked. For now, you would need
-to remap your own keys from these keys:
-
-![COLEMAK-DH](https://github.com/tobiasbuckell/vigor/blob/main/colemak%20cheatsheet.png)
