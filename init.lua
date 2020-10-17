@@ -1,5 +1,6 @@
 -- http://www.tobiasbuckell.com
 -- VIGOR: one fiction writer's variation on Vim/eMacs style modal bindings
+-- QWERTY EDITION
 
 -- Project to do list:
 -- * I need persistent banner alert in upper or lower part of screen saying 
@@ -95,47 +96,47 @@ end)
 -- QWERTY layout.
 
 
--- k  - move left a character
+-- h  - move left a character
 function left() hs.eventtap.keyStroke({alt}, "Left") end
-normal:bind({}, 'k', left, nil, left) 
+normal:bind({}, 'h', left, nil, left) 
 
 -- this "left, nil, left" got in there from previous code and it works with it 
 -- in there but I'm not sure what it is, maybe a better programmer than I could
 -- map all this out, I'm not a programmer, just someone who wanted to see 
 -- this happen.
 
--- o - move right a character
+-- ; - move right a character
 function right() hs.eventtap.keyStroke({alt}, "Right") end
-normal:bind({}, 'o', right, nil, right)
+normal:bind({}, ';', right, nil, right)
 
--- u - move up 
+-- i - move up 
 function up() hs.eventtap.keyStroke({}, "Up") end
-normal:bind({}, 'u', up, nil, up)
+normal:bind({}, 'i', up, nil, up)
 
--- e - move down 
+-- k - move down 
 function down() hs.eventtap.keyStroke({}, "Down") end
-normal:bind({}, 'e', down, nil, down)
+normal:bind({}, 'k', down, nil, down)
 
--- i  - move right to next word 
+-- l  - move right to next word 
 function word() hs.eventtap.keyStroke({"alt"}, "Right") end
-normal:bind({}, 'i', word, nil, word)
+normal:bind({}, 'l', word, nil, word)
 
--- n  - move to previous word 
+-- j  - move to previous word 
 function back() hs.eventtap.keyStroke({"alt"}, "Left") end
-normal:bind({}, 'n', back, nil, back)
+normal:bind({}, 'j', back, nil, back)
 
--- l - move to beginning of line 
-normal:bind({}, 'l', function()
+-- u - move to beginning of line 
+normal:bind({}, 'u', function()
     hs.eventtap.keyStroke({"ctrl"}, "Left")
 end)
 
--- y - move to end of line 
-normal:bind({""}, 'y', function()
+-- o - move to end of line 
+normal:bind({""}, 'o', function()
     hs.eventtap.keyStroke({"ctrl"}, "Right")
 end)
 
--- h - move to start of paragraph 
-normal:bind({""}, 'h', function()
+-- m - move to start of paragraph 
+normal:bind({""}, 'm', function()
     hs.eventtap.keyStroke({"option"}, "Up")
 end)
 
@@ -148,44 +149,44 @@ end)
 -- MOVEMENT WITH SHIFT TO SELECT
 --------------------------------------------------------------------------------
 
--- shift + i - select right to next word
-normal:bind({"shift"}, 'i', function()
+-- shift + l - select right to next word
+normal:bind({"shift"}, 'u', function()
     hs.eventtap.keyStroke({"option", "shift"}, "Right")
 end)
 
--- shift + n - select left to next word
-normal:bind({"shift"}, 'n', function()
+-- shift + j - select left to next word
+normal:bind({"shift"}, 'j', function()
     hs.eventtap.keyStroke({"option", "shift"}, "Left")
 end)
 
--- shift + e - select downwards
+-- shift + k - select downwards
 function down() hs.eventtap.keyStroke({"shift"}, "Down") end
-normal:bind({"shift"}, 'e', down, nil, down)
+normal:bind({"shift"}, 'k', down, nil, down)
 
--- shift + u - select upwards
+-- shift + i - select upwards
 function up() hs.eventtap.keyStroke({"shift"}, "Up") end
-normal:bind({"shift"}, 'u', up, nil, up)
+normal:bind({"shift"}, 'i', up, nil, up)
 
--- shift + k  - move left a character 
+-- shift + h  - move left a character 
 function left() hs.eventtap.keyStroke({"shift"}, "Left") end
-normal:bind({"shift"}, 'k', left, nil, left)
+normal:bind({"shift"}, 'h', left, nil, left)
 
--- shift + o - move right a character 
+-- shift + ; - move right a character 
 function right() hs.eventtap.keyStroke({"shift"}, "Right") end
-normal:bind({"shift"}, 'o', right, nil, right)
+normal:bind({"shift"}, ';', right, nil, right)
 
--- shift + l - move to beginning of line 
-normal:bind({"shift"}, 'l', function()
+-- shift + u - move to beginning of line 
+normal:bind({"shift"}, 'u', function()
     hs.eventtap.keyStroke({"cmd", "shift"}, "Left")
 end)
 
--- shift + y - move to end of line 
-normal:bind({"shift"}, 'y', function()
+-- shift + o - move to end of line 
+normal:bind({"shift"}, 'o', function()
     hs.eventtap.keyStroke({"cmd", "shift"}, "Right")
 end)
 
--- shift + h - move to start of paragraph 
-normal:bind({"shift"}, 'h', function()
+-- shift + m - move to start of paragraph 
+normal:bind({"shift"}, 'm', function()
     hs.eventtap.keyStroke({"option", "shift"}, "Up")
 end)
 
@@ -262,27 +263,27 @@ end)
 -- DELETIONS
 --------------------------------------------------------------------------------
 
--- s - select back a word, copy, then delete it
-normal:bind({""}, 's', function()
+-- d - select back a word, copy, then delete it
+normal:bind({""}, 'd', function()
     hs.eventtap.keyStroke({"option", "shift"}, "Left")
     hs.eventtap.keyStroke({"command"}, "c")  
     hs.eventtap.keyStroke({""}, "delete")          
 end)
 
--- t - select right to next word, copy, then delete it
-normal:bind({""}, 't', function()
+-- f - select right to next word, copy, then delete it
+normal:bind({""}, 'f', function()
     hs.eventtap.keyStroke({"option", "shift"}, "Right")
     hs.eventtap.keyStroke({"command"}, "c")  
     hs.eventtap.keyStroke({""}, "delete")          
 end)
 
--- shift + s - select back a character and delete
-normal:bind({"shift"}, 's', function()
+-- shift + d - select back a character and delete
+normal:bind({"shift"}, 'd', function()
     hs.eventtap.keyStroke({""}, "delete")    
 end)
 
--- shift + t - select forward a character and delete
-normal:bind({"shift"}, 't', function()
+-- shift + f - select forward a character and delete
+normal:bind({"shift"}, 'f', function()
     hs.eventtap.keyStroke({""}, "forwarddelete")    
 end)
 
@@ -293,8 +294,8 @@ normal:bind({""}, 'a', function()
     hs.eventtap.keyStroke({""}, "delete")        
 end)
 
--- r - select forward a paragraph, copy, and delete
-normal:bind({"shift"}, 'r', function()
+-- shift + s - select forward a paragraph, copy, and delete
+normal:bind({"shift"}, 's', function()
     hs.eventtap.keyStroke({"ctrl", "shift"}, "Right")
     hs.eventtap.keyStroke({"command"}, "c")  
     hs.eventtap.keyStroke({""}, "delete")         
@@ -308,8 +309,8 @@ normal:bind({"shift"}, 'a', function()
     hs.eventtap.keyStroke({""}, "delete")        
 end)
 
--- r - select forward a paragraph, copy, and delete
-normal:bind({""}, 'r', function()
+-- s - select forward a paragraph, copy, and delete
+normal:bind({""}, 's', function()
     hs.eventtap.keyStroke({"option", "shift"}, "Down")
     hs.eventtap.keyStroke({"command"}, "c")  
     hs.eventtap.keyStroke({""}, "delete")         
@@ -336,7 +337,7 @@ normal:bind({}, 'c', function()
 end)
 
 -- v - paste 
-normal:bind({}, 'p', function()
+normal:bind({}, 'v', function()
     hs.eventtap.keyStroke({"cmd"}, "v")
 end)
 
@@ -344,8 +345,8 @@ end)
 -- pasteboard. Cmd shift V is usually what we use for a clipboard history app, 
 -- so I'm keeping that.
 
--- p - paste 
-normal:bind({}, 'p', function()
+-- r - paste 
+normal:bind({}, 'r', function()
     hs.eventtap.keyStroke({"cmd" , "shift"}, "v")
 end)
 
