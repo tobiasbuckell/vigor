@@ -1,5 +1,5 @@
 # VIGOR (QWERTY VARIANT)
-*a VIM-like keybinding system in Lua code for Hammerspoon with Colemak-DH keyboard layout*
+*a VIM-like keybinding system in Lua code for Hammerspoon with QWERTY keyboard layout*
 
 ## How to use:
 
