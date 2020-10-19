@@ -33,5 +33,5 @@ in a text editor of your choice.
 
 Enjoy!
 
-![COLEMAK-DH](https://github.com/tobiasbuckell/vigor-qwerty/blob/main/keyboard.png)
+![COLEMAK-DH](https://raw.githubusercontent.com/tobiasbuckell/vigor/vigor-qwerty/keyboard.png)
 
